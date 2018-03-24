@@ -29,15 +29,16 @@ class App extends Component {
         'omlets',
       ],
       recipeUpdaterId: null,
+      searchKeyword: '',
     };
 
     this.updateRecipe = this.updateRecipe.bind(this);
+    this.updateKeyword = this.updateKeyword.bind(this);
+    this.kickOffSearch = this.kickOffSearch.bind(this);
   }
 
   componentDidMount() {
     const recipeUpdaterId = setInterval(this.updateRecipe, 4000);
-
-    console.log(recipeUpdaterId);
 
     this.setState({
       recipeUpdaterId,
@@ -57,6 +58,16 @@ class App extends Component {
     });
   }
 
+  updateKeyword(event) {
+    this.setState({
+      searchKeyword: event.target.value,
+    })
+  }
+
+  kickOffSearch() {
+    console.log(`search keyword is ${this.state.searchKeyword}`);
+  }
+
   render() {
     return (
       <Wrapper>
@@ -68,8 +79,12 @@ class App extends Component {
             <SearchBlock>
               <Searchbar
                 placeholder="find something good"
+                onChange={this.updateKeyword}
+                value={this.state.searchKeyword}
               />
-              <SearchButton>
+              <SearchButton
+                onClick={this.kickOffSearch}
+              >
                 Search
               </SearchButton>
             </SearchBlock>
