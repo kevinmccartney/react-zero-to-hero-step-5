@@ -69,9 +69,7 @@ class App extends Component {
               <Searchbar
                 placeholder="find something good"
               />
-              <SearchButton
-                onClick={this.updateRecipe}
-              >
+              <SearchButton>
                 Search
               </SearchButton>
             </SearchBlock>
