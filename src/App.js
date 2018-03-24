@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Wrapper from './components/Wrapper';
 import Background from './components/Background';
@@ -12,14 +13,21 @@ import SearchBlock from './components/SearchBlock';
 import SearchButton from './components/SearchButton';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state ={
+      recipe: 'casserole',
+    };
+  }
   render() {
     return (
       <Wrapper>
         <Background />
         <UIWrapper>
           <UIInner>
-            <Title>What's cookin, good lookin?</Title>
-            <Subtitle>You can make a <Recipe>casserole</Recipe></Subtitle>
+            <Title>{this.props.greeting}</Title>
+            <Subtitle>You can make a <Recipe>{this.state.recipe}</Recipe></Subtitle>
             <SearchBlock>
               <Searchbar
                 placeholder="find something good"
@@ -32,5 +40,9 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  greeting: PropTypes.string.isRequired,
+};
 
 export default App;
